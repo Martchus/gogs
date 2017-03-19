@@ -12,12 +12,12 @@ After=mariadb.service mysqld.service postgresql.service memcached.service redis.
 #LimitMEMLOCK=infinity
 #LimitNOFILE=65535
 Type=simple
-User=git
-Group=git
-WorkingDirectory=/home/git/gogs
-ExecStart=/home/git/gogs/gogs web
+User=gogs
+Group=gogs
+WorkingDirectory=/var/lib/gogs
+ExecStart=/usr/bin/gogs web --config /etc/gogs/app.ini
 Restart=always
-Environment=USER=git HOME=/home/git
+Environment=USER=gogs HOME=/var/lib/gogs GOGS_CUSTOM=/var/lib/gogs/custom
 
 [Install]
 WantedBy=multi-user.target
